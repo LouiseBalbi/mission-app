@@ -17,6 +17,33 @@ public class Mission {
   private LocalDate dateDebut;
   private LocalDate dateFin;
   private BigDecimal tauxJournalier;
+  
+  
+/**
+ * @param id
+ * @param libelle
+ * @param dateDebut
+ * @param dateFin
+ * @param tauxJournalier
+ */
+public Mission(Integer id, String libelle, LocalDate dateDebut, LocalDate dateFin, BigDecimal tauxJournalier) {
+	super();
+	this.id = id;
+	this.libelle = libelle;
+	this.dateDebut = dateDebut;
+	this.dateFin = dateFin;
+	this.tauxJournalier = tauxJournalier;
+}
+
+
+/**
+ * 
+ */
+public Mission() {
+	super();
+}
+
+
 /**
  * @return the id
  */
@@ -76,6 +103,11 @@ public BigDecimal getTauxJournalier() {
  */
 public void setTauxJournalier(BigDecimal tauxJournalier) {
 	this.tauxJournalier = tauxJournalier;
+}
+@Override
+public String toString() {
+	return "Mission [id=" + id + ", libelle=" + libelle + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+			+ ", tauxJournalier=" + tauxJournalier + "]";
 }
   
   

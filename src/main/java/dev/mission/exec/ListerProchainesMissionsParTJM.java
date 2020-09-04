@@ -13,28 +13,29 @@ import dev.mission.entite.Mission;
 import dev.mission.repository.MissionRepository;
 
 @Controller
-@Profile("lister")
-public class ListerProchainesMissions implements Runnable{
+@Profile("listerTjm")
+public class ListerProchainesMissionsParTJM implements Runnable{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(MissionAppApplication.class);
 
 	private MissionRepository missionRepository;
 
-	public ListerProchainesMissions(MissionRepository missionRepository) {
+	public ListerProchainesMissionsParTJM(MissionRepository missionRepository) {
 		super();
 		this.missionRepository = missionRepository;
 	}
 
 	@Override
 	public void run() {
-		List<Mission> listeProchainesMissions = missionRepository.findAllProchainesMissions(LocalDate.now());
-		if(listeProchainesMissions.isEmpty()) {
+		List<Mission> listeProchainesMissionsParTjm = missionRepository.findAllProchainesMissions(LocalDate.now());
+		if(listeProchainesMissionsParTjm.isEmpty()) {
 			LOG.warn("Aucune mission prévue");
 		}else {
-			for(Mission mission : listeProchainesMissions) {
+			for(Mission mission : listeProchainesMissionsParTjm) {
 				LOG.warn(mission.toString());
 			}
 		}
+		
 	}
 
 }

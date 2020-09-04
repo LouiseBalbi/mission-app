@@ -10,5 +10,11 @@ import dev.mission.entite.Mission;
 
 public interface MissionRepository extends JpaRepository<Mission, Integer>{
 
+	@Query("select m from Mission m where m.dateDebut >= NOW()")
+	List<Mission> findAllProchainesMissions(LocalDate date);
+	
+	@Query("select m from Mission m where m.dateDebut >= NOW() and m.tauxJournalier > 200")
+	List<Mission> findAllProchainesMissionsParTjm(LocalDate date);
 
+	
 }
