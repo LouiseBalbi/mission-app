@@ -16,7 +16,7 @@ import dev.mission.repository.MissionRepository;
 @Profile("lister")
 public class ListerProchainesMissions implements Runnable{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(MissionAppApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ListerProchainesMissions.class);
 
 	private MissionRepository missionRepository;
 
@@ -32,7 +32,7 @@ public class ListerProchainesMissions implements Runnable{
 			LOG.warn("Aucune mission prévue");
 		}else {
 			for(Mission mission : listeProchainesMissions) {
-				LOG.warn(mission.toString());
+				LOG.warn("Mission [id={} dateDebut={} dateFin={} libelle={} tauxJournaliers={}]", mission.getId(), mission.getDateDebut(), mission.getDateFin(), mission.getLibelle(), mission.getTauxJournalier());
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package dev.mission.exec;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import dev.mission.repository.MissionRepository;
 @Profile("listerTjm")
 public class ListerProchainesMissionsParTJM implements Runnable{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(MissionAppApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ListerProchainesMissionsParTJM.class);
 
 	private MissionRepository missionRepository;
 
@@ -27,12 +28,13 @@ public class ListerProchainesMissionsParTJM implements Runnable{
 
 	@Override
 	public void run() {
-		List<Mission> listeProchainesMissionsParTjm = missionRepository.findAllProchainesMissions(LocalDate.now());
+		BigDecimal big = new BigDecimal(200.0);
+		List<Mission> listeProchainesMissionsParTjm = missionRepository.findAllProchainesMissionsParTjm(LocalDate.now(), big);
 		if(listeProchainesMissionsParTjm.isEmpty()) {
 			LOG.warn("Aucune mission prévue");
 		}else {
 			for(Mission mission : listeProchainesMissionsParTjm) {
-				LOG.warn(mission.toString());
+				LOG.warn("Mission [id={} dateDebut={} dateFin={} libelle={} tauxJournaliers={}]", mission.getId(), mission.getDateDebut(), mission.getDateFin(), mission.getLibelle(), mission.getTauxJournalier());
 			}
 		}
 		
